@@ -1,0 +1,37 @@
+/* Shared welcome, toolbar, HUD and result layout for paper games. */
+html,body { height:100%; min-width:320px; overflow:hidden; }
+body { user-select:none; -webkit-user-select:none; }
+[hidden] { display:none!important; }
+.game-scene { position:fixed; inset:0; z-index:-2; pointer-events:none; }
+.game-toolbar { position:relative; z-index:10; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:24px; padding:25px 48px; max-width:1720px; margin:auto; }
+.back-link { justify-self:start; color:#e6e9d8; }
+.toolbar-actions { grid-column:3; justify-self:end; display:flex; gap:10px; }
+.hud { display:flex; align-items:center; gap:52px; text-align:center; }
+.hud span { display:block; color:#becfc9; font-size:11px; letter-spacing:.05em; margin-bottom:3px; }
+.hud strong { display:block; font:700 34px/1 var(--paper-title-font); font-variant-numeric:tabular-nums; min-width:65px; }
+.hud small { font-size:19px; color:#b9c9c1; }
+.timer-stat.urgent strong { color:#ffb49a; }
+.welcome-screen { position:absolute; inset:110px 0 42px; margin:auto; width:min(1400px,calc(100% - 130px)); display:grid; grid-template-columns:1.2fr 1fr; grid-template-rows:1fr auto; align-items:center; gap:20px 50px; overflow:auto; scrollbar-width:thin; }
+h1 { margin:12px 0 22px; font:700 clamp(74px,8.5vw,132px)/1 var(--paper-title-font); letter-spacing:-.06em; color:#fff0d4; text-shadow:1px 4px #102e362b; }h1 span { color:var(--paper-gold); }
+.hero-description { font-size:clamp(14px,1.2vw,18px); line-height:1.8; color:#c4d4d2; margin:0 0 30px; max-width:560px; }
+.welcome-actions { display:flex; align-items:center; gap:26px; }
+#start-button { min-width:225px; padding:20px 30px; text-align:center; font-size:19px; }
+.record-chip { display:flex; align-items:center; gap:8px; font-size:12px; color:#ccd5c4; }.record-chip svg { width:25px; height:30px; color:var(--paper-gold); }.record-chip b { font:700 24px var(--paper-title-font); color:#f4e8c8; }
+.welcome-art { width:100%; max-width:520px; justify-self:end; }.welcome-art>svg { width:100%; height:auto; filter:drop-shadow(4px 7px #14384324); overflow:visible; }.art-note { font-size:clamp(18px,1.6vw,24px); text-align:center; line-height:1.4; color:#e3e7d4; margin-top:10px; }
+.floating { animation:float 5s ease-in-out infinite; }.gift-two { animation-delay:-2s; animation-duration:6s; }@keyframes float { 0%,100% { transform:translateY(-7px); }50% { transform:translateY(8px); } }
+.game-guide { grid-column:1/-1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; padding:12px 2px 18px; }
+.guide-ticket { display:flex; align-items:center; gap:22px; padding:22px 28px; min-height:115px; }.guide-ticket>svg { width:58px; height:63px; flex-shrink:0; transform:rotate(-8deg); }.guide-ticket:nth-child(2)>svg { width:45px; margin-right:13px; transform:rotate(7deg); color:#7b9fa5; }.guide-ticket b { display:block; font:700 clamp(19px,1.6vw,25px)/1.15 var(--paper-title-font); letter-spacing:-.03em; }.guide-ticket small { display:block; margin-top:8px; color:#64706c; font-size:12px; line-height:1.5; }
+#arena { position:absolute; inset:108px 0 0; outline:none; touch-action:none; overflow:hidden; }
+#ready { position:fixed; inset:0; display:grid; place-items:center; font:700 clamp(100px,17vw,220px)/1 var(--paper-title-font); text-shadow:0 8px #0e334938; color:#fff1d4; pointer-events:none; z-index:12; background:#173e5066; }
+.dialog-art { width:75px; height:75px; margin:0 auto 22px; color:#72969b; }.dialog-art.cup { height:88px; transform:rotate(-6deg); }.rules-list { padding-left:22px; text-align:left; font-size:14px; line-height:1.7; color:#536465; }.rules-list li { margin:15px 0; padding-left:5px; }.rules-list b { color:var(--paper-ink); }
+.final-score { font:700 83px/1 var(--paper-title-font); color:#af7d37; margin-top:25px; }.final-score small { font-size:36px; color:#9a967d; }.result-stats { display:grid; grid-template-columns:repeat(3,1fr); padding:20px 0; margin:22px 0; border-block:1px solid #d6c6a4; }.result-stats b { display:block; font:700 26px var(--paper-title-font); }.result-stats span { display:block; margin-top:5px; color:#78817a; font-size:11px; }
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }.noscript-warning { position:fixed; inset:110px 20px auto; padding:30px; background:var(--paper-cream); color:var(--paper-ink); }
+@media(max-width:1050px) { .game-toolbar { padding:20px 27px; gap:15px; }.welcome-screen { width:calc(100% - 80px); gap:20px; }.guide-ticket { padding:20px; gap:15px; }.game-guide { gap:14px; }.guide-ticket>svg { width:43px; height:53px; }.guide-ticket:nth-child(2)>svg { width:35px; margin-right:8px; }.guide-ticket small { font-size:11px; }.hud { gap:30px; }.hero-description br { display:none; } }
+@media(max-width:760px) { .game-toolbar { grid-template-columns:1fr 1fr; padding:17px 20px; }.toolbar-actions { grid-column:2; }.hud { position:absolute; top:78px; left:20px; right:20px; justify-content:center; gap:35px; padding-bottom:12px; border-bottom:1px solid #c5d6ce33; }.hud strong { font-size:30px; }.hud small { font-size:16px; }#arena { top:156px; }.welcome-screen { inset:90px 0 18px; width:calc(100% - 40px); display:flex; flex-direction:column; justify-content:center; align-items:stretch; gap:22px; }.welcome-copy { text-align:center; }h1 { font-size:clamp(68px,16vw,100px); margin:10px 0 18px; }.hero-description { margin:0 auto 25px; max-width:440px; }.welcome-actions { justify-content:center; gap:20px; }#start-button { min-width:195px; padding:18px 24px; font-size:17px; }.welcome-art { margin:0 auto; max-width:260px; }.welcome-art>svg { display:block; height:180px; margin:0 auto 8px; }.art-note { margin:0; font-size:19px; }.game-guide { display:flex; gap:10px; padding:8px 2px 16px; }.guide-ticket { flex:1; min-width:0; flex-direction:column; gap:10px; text-align:center; padding:19px 10px; }.guide-ticket>svg { width:44px; height:48px; }.guide-ticket:nth-child(2)>svg { width:36px; margin:0; }.guide-ticket b { font-size:18px; }.guide-ticket small { font-size:11px; }.time-track { left:18%; right:18%; } }
+@media(max-width:400px) { .welcome-actions { gap:14px; }#start-button { min-width:175px; padding:18px; }.record-chip { font-size:10px; gap:5px; }.record-chip b { font-size:21px; }.game-guide { gap:8px; }.guide-ticket b { font-size:16px; }.guide-ticket small { font-size:10px; }.hud { gap:22px; } }
+@media(max-height:730px) and (min-width:761px) { .welcome-screen { top:86px; bottom:15px; }.welcome-art { max-width:340px; }h1 { font-size:86px; margin:12px 0; }.hero-description { font-size:14px; margin-bottom:22px; }.guide-ticket { min-height:95px; padding:15px 25px; } }
+@media(max-height:620px) and (max-width:760px) { .welcome-screen { justify-content:flex-start; }.game-guide { padding-top:0; }.welcome-art { display:none; } }
+@media(prefers-reduced-motion:reduce) { .floating { animation:none; } }
+
+@media(max-width:760px) { .paper-moon { left:46%; top:18px; width:33px; height:40px; } }
+

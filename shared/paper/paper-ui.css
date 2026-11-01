@@ -1,0 +1,186 @@
+:root {
+  --paper-ink:#203f49;
+  --paper-cream:#f6edda;
+  --paper-red:#b9483c;
+  --paper-pine:#285951;
+  --paper-gold:#d8ad57;
+  --paper-font:"Trebuchet MS",Verdana,sans-serif;
+  --paper-title-font:"Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+  --paper-shadow:0 5px 0 #122e3938,0 12px 22px #102f3524
+}
+* {
+  box-sizing:border-box
+}
+body {
+  margin:0
+}
+button,a {
+  -webkit-tap-highlight-color:transparent
+}
+.paper-page {
+  color:var(--paper-cream);
+  font-family:var(--paper-font);
+  background:#214a60;
+  isolation:isolate
+}
+.paper-page svg {
+  display:block
+}
+.paper-symbols {
+  position:absolute;
+  width:0;
+  height:0;
+  overflow:hidden;
+  pointer-events:none
+}
+.paper-grain {
+  position:fixed;
+  inset:0;
+  z-index:5;
+  pointer-events:none;
+  opacity:.13;
+  filter:url(#paper-grain);
+  background:#8a7e66
+}
+.paper-button {
+  border:0;
+  border-radius:9px 12px 8px 11px;
+  padding:14px 24px;
+  font:700 18px var(--paper-font);
+  color:var(--paper-cream);
+  background:var(--paper-pine);
+  box-shadow:0 4px 0 #173b36;
+  cursor:pointer;
+  text-decoration:none
+}
+.paper-button:active {
+  transform:translateY(3px);
+  box-shadow:0 1px 0 #173b36
+}
+.paper-button:focus-visible,.game-card:focus-visible {
+  outline:4px solid #f2ca73;
+  outline-offset:7px
+}
+.game-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr))
+}
+.game-card {
+  display:grid;
+  position:relative;
+  grid-template-columns:42% minmax(0,1fr);
+  align-items:center;
+  color:var(--paper-ink);
+  text-decoration:none;
+  background:var(--paper-cream);
+  border:1px solid #fff5dc;
+  border-radius:13px 10px 15px 9px;
+  box-shadow:var(--paper-shadow);
+  transition:transform .22s ease,box-shadow .22s ease;
+  touch-action:manipulation
+}
+.game-card::before {
+  content:"";
+  position:absolute;
+  inset:6px;
+  border:1px solid #bba77e55;
+  border-radius:9px 6px 11px 6px;
+  pointer-events:none
+}
+.game-card::after {
+  content:"";
+  position:absolute;
+  left:13px;
+  right:13px;
+  top:0;
+  height:5px;
+  background:#fff7e5;
+  clip-path:polygon(0 0,4% 45%,12% 0,19% 55%,28% 10%,36% 60%,48% 0,57% 60%,63% 10%,71% 80%,82% 0,91% 55%,100% 0)
+}
+.game-card-art {
+  width:100%;
+  height:100%;
+  overflow:visible;
+  filter:drop-shadow(2px 5px 0 #1c3b431c);
+  transition:transform .3s ease
+}
+.game-card-copy {
+  padding:20px 27px 20px 5px;
+  position:relative;
+  z-index:1
+}
+.game-card-kicker {
+  display:block;
+  font-size:10px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:#867354
+}
+.game-card-title {
+  display:block;
+  font-family:var(--paper-title-font);
+  font-size:clamp(23px,2.1vw,37px);
+  font-weight:700;
+  line-height:1.05;
+  letter-spacing:-.045em;
+  margin:9px 0 11px
+}
+.game-card-description {
+  display:block;
+  font-size:clamp(12px,.86vw,16px);
+  line-height:1.5;
+  color:#526367;
+  max-width:230px
+}
+.game-card-arrow {
+  display:grid;
+  place-items:center;
+  width:29px;
+  height:29px;
+  margin-top:15px;
+  background:var(--card-accent,var(--paper-pine));
+  color:#fff6e3;
+  border-radius:50% 46% 49% 44%
+}
+.game-card-arrow svg {
+  width:16px;
+  height:16px
+}
+.game-card:nth-child(2n) {
+  border-radius:9px 14px 10px 15px
+}
+.game-card:active {
+  transform:translateY(3px) scale(.985);
+  box-shadow:0 2px 0 #122e3938,0 4px 8px #102f3524
+}
+@media(hover:hover) {
+  .game-card:hover {
+    transform:translateY(-5px) rotate(-.35deg);
+    box-shadow:0 8px 0 #122e392b,0 19px 28px #102f3538
+  }
+  .game-card:hover .game-card-art {
+    transform:translateY(-3px) rotate(-3deg)
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation:none!important;
+    transition:none!important
+  }
+}
+
+.paper-landscape { display: block; width: 100%; height: 100%; }
+
+/* Optional landscape ornaments: one moon symbol and a fixed pool of tiny snowflakes. */
+.paper-moon { position: absolute; top: clamp(65px, 8vh, 98px); left: 26%; width: clamp(60px, 6.6vw, 96px); height: auto; filter: drop-shadow(3px 4px 0 #102d3826); pointer-events: none; }
+.paper-flurry { position: absolute; inset: 0; overflow: hidden; color: #f7f0dc; pointer-events: none; }
+.paper-flake { position: absolute; top: -20px; left: var(--flake-left); width: var(--flake-size); height: var(--flake-size); opacity: var(--flake-opacity); pointer-events: none; animation: paper-flurry-fall var(--flake-speed) linear infinite; animation-delay: var(--flake-delay); }
+@keyframes paper-flurry-fall {
+  0% { transform: translate3d(0, -20px, 0) rotate(0deg); opacity: 0; }
+  8% { opacity: var(--flake-opacity); }
+  88% { opacity: var(--flake-opacity); }
+  100% { transform: translate3d(var(--flake-drift), calc(100vh + 35px), 0) rotate(230deg); opacity: 0; }
+}
+@media (max-width: 760px) { .paper-moon { left: 18%; top: 85px; width: 62px; } }
+@media (prefers-reduced-motion: reduce) { .paper-flurry { display: none; } }
