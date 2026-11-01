@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#214a60"><meta name="color-scheme" content="light">
+<title>Подаркопад — зимние истории</title>
+<link rel="stylesheet" href="../shared/paper/paper-ui.css?v=f78536c78d"><link rel="stylesheet" href="../shared/paper/paper-game.css?v=0e4db4335c"><link rel="stylesheet" href="style.css?v=022e9b416d">
+<script src="../shared/paper/paper-ui.js?v=e9249c36ca" defer></script><script src="../shared/paper/winter-scene.js?v=2525e19b6b" defer></script><script src="engine.js?v=293d065ba0" defer></script><script src="script.js?v=c817b0d6c8" defer></script>
+</head>
+<body class="paper-page" data-phase="welcome">
+<div class="game-scene" data-paper-scene data-paper-moon data-paper-snow aria-hidden="true"></div><div class="paper-grain" aria-hidden="true"></div>
+<header class="game-toolbar">
+<a class="quiet-link back-link" href="../select_game_NY-main/index.html">Все игры</a>
+<div id="hud" class="hud" hidden>
+<div class="score-stat"><span class="stat-caption">Очки</span><strong id="score">0</strong></div>
+<div class="lives-stat"><span class="stat-caption">Жизни</span><div id="lives" role="img" aria-label="5 жизней"></div></div>
+<div class="best-stat"><span class="stat-caption">Рекорд</span><strong id="hud-best">0</strong></div>
+</div>
+<div class="toolbar-actions"><button id="pause-button" class="icon-button" aria-label="Пауза" title="Пауза" hidden><svg class="paper-icon" aria-hidden="true"><use href="#paper-pause"/></svg></button></div>
+</header>
+<main id="playfield" tabindex="-1" aria-label="Игра Подаркопад" aria-describedby="control-description">
+<svg id="world" aria-hidden="true"><g id="gifts-layer"></g><g id="basket-layer"><g id="magnet-aura" hidden><path d="M-100 5Q0-90 100 5M-135 0Q0-140 135 0" fill="none" stroke="#e2c87f" stroke-width="2" stroke-dasharray="5 9"/></g><svg id="basket" viewBox="0 0 130 65"><use href="#paper-basket" width="130" height="65"/></svg></g><g id="effects-layer"></g></svg>
+<section id="welcome" class="welcome-screen" aria-labelledby="game-title">
+<div class="welcome-copy"><h1 id="game-title">Подаркопад<span class="title-dot">.</span></h1><p class="hero-description">Подарки рассыпались по зимнему небу.<br> Подставь корзинку и собери самые добрые сюрпризы.</p>
+<div class="welcome-actions"><button id="start-button" class="paper-button warm">Начать игру</button><span class="record-chip"><svg class="paper-icon" aria-hidden="true"><use href="#paper-cup"/></svg>Рекорд <b id="welcome-best">0</b></span></div>
+</div>
+<div class="welcome-art"><svg viewBox="0 0 520 470" aria-hidden="true"><path class="art-disc" d="M61 152 110 62 243 21 381 49 469 158 461 301 363 410 218 435 83 361 38 250Z" fill="#b9cdd1" opacity=".22"/><path d="M77 360Q240 316 448 367l-24 27-68 23-118 18-109-40Z" fill="#e5e9da" opacity=".2"/><g class="hero-gift hero-gift-a"><use href="#paper-gift" x="95" y="77" width="143" height="168" transform="rotate(-13 164 163)"/></g><g class="hero-gift hero-gift-b"><use href="#paper-small-gift" x="280" y="120" width="108" height="127" transform="rotate(14 330 175)"/></g><g class="hero-gift hero-gift-c"><use href="#paper-bonus-gift" x="256" y="15" width="65" height="80" transform="rotate(8 285 55)"/></g><g color="#e5d9b5"><use href="#paper-snowflake" x="38" y="165" width="36" height="36"/><use href="#paper-snowflake" x="402" y="107" width="26" height="26"/><use href="#paper-snowflake" x="387" y="286" width="37" height="37"/></g><path d="M188 233q-15 37 14 66m129-52q-3 24-29 46" stroke="#efdfad" stroke-width="2" stroke-dasharray="5 9" fill="none" opacity=".5"/><use href="#paper-basket" x="139" y="311" width="245" height="122"/><path d="m117 400-29 0m0 0 9-7m-9 7 9 7m301-7h30m0 0-9-7m9 7-9 7" fill="none" stroke="#e6e7d2" stroke-width="2"/></svg><div class="art-note">Передвигай корзинку пальцем</div></div>
+<div class="gift-guide"><div class="guide-ticket paper-panel"><svg aria-hidden="true" viewBox="0 0 100 110"><use href="#paper-gift" width="100" height="110"/></svg><span><b>Подарок</b><small>Подарки приносят очки</small></span></div><div class="guide-ticket paper-panel"><svg aria-hidden="true" viewBox="0 0 100 110"><use href="#paper-danger-gift" width="100" height="110"/></svg><span><b>Испорченный подарок</b><small>Испорченные подарки отнимают очки жизни</small></span></div><div class="guide-ticket paper-panel"><svg aria-hidden="true" viewBox="0 0 100 110"><use href="#paper-bonus-gift" width="100" height="110"/></svg><span><b>Суперподарок</b><small>В суперподарках находится бонус</small></span></div></div>
+</section>
+<div id="ready" class="ready-count" hidden aria-live="assertive">3</div>
+<div id="power-banner" class="power-banner paper-panel" hidden><svg class="paper-icon" aria-hidden="true"><use id="power-icon" href="#paper-hourglass"/></svg><div><b id="power-name"></b><span id="power-explanation"></span><div class="power-track"><i id="power-progress"></i></div></div><strong id="power-seconds"></strong></div>
+<div id="streak" class="streak" hidden><span id="streak-count">0</span><small>подряд</small><b id="streak-multiplier">×1</b></div>
+<div id="toast" class="game-toast" hidden></div>
+<p id="control-description" class="sr-only">Двигайте корзинку пальцем или мышью. На клавиатуре используйте стрелки влево и вправо. Пять жизней. Ловите цветные и золотые подарки, избегайте тёмных с крестом. Пауза: Escape или P.</p>
+<div id="announcer" class="sr-only" role="status" aria-live="polite"></div>
+</main>
+
+<dialog id="pause-dialog" class="paper-panel paper-dialog" aria-labelledby="pause-title"><div class="pause-decoration" aria-hidden="true"><svg class="paper-icon"><use href="#paper-snowflake"/></svg></div><div class="dialog-kicker">Подарки подождут</div><h2 id="pause-title">Тихая минутка</h2><p id="pause-description">Переведи дух. Продолжим с того же места.</p><div class="dialog-actions"><button id="resume-button" class="paper-button">Продолжить</button><button id="restart-button" class="paper-button secondary">Начать заново</button><a class="quiet-link" href="../select_game_NY-main/index.html">К выбору игр</a></div></dialog>
+<dialog id="result-dialog" class="paper-panel paper-dialog" aria-labelledby="result-title"><svg class="result-cup" aria-hidden="true" viewBox="0 0 100 110"><use href="#paper-cup" width="100" height="110"/></svg><div id="result-kicker" class="dialog-kicker">Спасибо за игру</div><h2 id="result-title">Праздник в корзинке</h2><div id="final-score" class="final-score">0</div><p class="result-score-label">очков собрано</p><div class="result-stats"><div><b id="result-caught">0</b><span>подарков</span></div><div><b id="result-streak">0</b><span>лучшая серия</span></div><div><b id="result-time">0:00</b><span>время игры</span></div></div><p>Твой рекорд: <strong id="result-best">0</strong></p><div class="dialog-actions"><button id="again-button" class="paper-button warm">Ещё один подарок?</button><a class="quiet-link" href="../select_game_NY-main/index.html">К выбору игр</a></div></dialog>
+<noscript><p class="noscript-warning">Для игры нужен включённый JavaScript. <a href="../select_game_NY-main/index.html">К выбору игр</a></p></noscript>
+</body></html>
