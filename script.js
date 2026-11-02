@@ -14,9 +14,9 @@
   const game = new GiftCatcherEngine.Game();
   const world = $('world'), field = $('playfield'), giftLayer = $('gifts-layer'), effects = $('effects-layer');
   const powerData = {
-    slow: { title:'Снежная тишина', text:'Подарки падают вдвое медленнее', icon:'paper-hourglass' },
-    magnet: { title:'Добрый магнит', text:'Притягивает цветные и золотые подарки', icon:'paper-magnet' },
-    double: { title:'Вдвое больше чуда', text:'Все обычные поимки приносят ×2 очков', icon:'paper-double' },
+    slow: { title:'Замедление', text:'Подарки падают вдвое медленнее', icon:'paper-hourglass' },
+    magnet: { title:'Могнит', text:'Притягивает цветные и золотые подарки', icon:'paper-magnet' },
+    double: { title:'Вдвое больше очков', text:'Все обычные подарки приносят ×2 очков', icon:'paper-double' },
     clear: { title:'Чистое небо', text:'Опасные подарки исчезли. +15 очков', icon:'paper-sweep' }
   };
   function setText(element, value) { const text = String(value); if (element.textContent !== text) element.textContent = text; }
@@ -57,7 +57,7 @@
     setText($('final-score'),s.score); setText($('result-caught'),s.caught); setText($('result-streak'),s.maxStreak);
     setText($('result-time'),Math.floor(s.elapsed/60)+':'+String(Math.floor(s.elapsed%60)).padStart(2,'0'));
     setText($('result-kicker'),s.score>sessionBest?'Новый личный рекорд':'Спасибо за игру');
-    setText($('result-title'),s.score>sessionBest?'Вот это подаркопад!':'Праздник в корзинке');
+    setText($('result-title'),s.score>sessionBest?'Вот это подаркопад!':'Полная корзина!');
     $('result-dialog').showModal(); announce('Игра окончена. Собрано '+s.score+' очков.');
   }
   function updateHUD() {
@@ -83,7 +83,7 @@
   function handleEvents(events) {
     for (const event of events) {
       if (event.type==='catch') { pulse=1; addBurst(event.x,event.y,'+'+event.points); }
-      if (event.type==='damage') { hitTime=.4; addBurst(event.x,event.y,'−1 жизнь',true); toast(event.reason==='bad'?'Подарки с крестиком лучше пропускать':'Ещё успеем поймать следующий',2); }
+      if (event.type==='damage') { hitTime=.4; addBurst(event.x,event.y,'−1 жизнь',true); toast(event.reason==='bad'?'Подарки с крестиком лучше пропускать':'Еще наловим!',2); }
       if (event.type==='power') { toast(powerData[event.power].title+'. '+powerData[event.power].text,3); }
       if (event.type==='streak') toast(event.value+' подряд! Очки за поимку ×'+event.multiplier,2.5);
       if (event.type==='end') endRound();
